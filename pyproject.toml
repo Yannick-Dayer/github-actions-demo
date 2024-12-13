@@ -26,8 +26,6 @@ classifiers = [
 dependencies = ["click>=8"]
 
 [project.urls]
-documentation = "https://clapper.readthedocs.io/en/latest/"
-homepage = "https://pypi.org/project/clapper"
 repository = "https://github.com/Yannick-Dayer/github-actions-demo"
 changelog = "https://github.com/Yannick-Dayer/github-actions-demo/releases"
 
@@ -167,7 +165,7 @@ convention = "numpy"
 "doc/conf.py" = ["D"]
 
 [tool.pytest.ini_options]
-addopts = ["--cov=clapper", "--cov-report=term-missing", "--import-mode=append"]
+addopts = ["--cov=dummy_pkg", "--cov-report=term-missing", "--import-mode=append"]
 
 [tool.coverage.run]
 relative_files = true
