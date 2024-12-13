@@ -1,0 +1,50 @@
+# SPDX-FileCopyrightText: Copyright © Idiap Research Institute <contact@idiap.ch>
+#
+# SPDX-License-Identifier: MIT
+
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+default_install_hook_types: ["pre-commit", "commit-msg"]
+repos:
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.6.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+        args: []
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.3
+    hooks:
+      - id: ruff
+        args: [ --fix ]
+      - id: ruff-format
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.13.0
+    hooks:
+    - id: mypy
+      args: [ --install-types, --non-interactive, --no-strict-optional, --ignore-missing-imports ]
+      exclude: '^.*/data/second_config\.py$'
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-ast
+      - id: check-added-large-files
+      - id: check-toml
+      - id: check-yaml
+      - id: debug-statements
+      - id: check-case-conflict
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: debug-statements
+  - repo: https://github.com/fsfe/reuse-tool
+    rev: v5.0.2
+    hooks:
+      - id: reuse
+  - repo: local
+    hooks:
+      - id: pixi
+        name: Check outdated pixi.lock
+        language: system
+        entry: pixi list --locked
+        pass_filenames: false

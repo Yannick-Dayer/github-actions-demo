@@ -1,0 +1,25 @@
+# SPDX-FileCopyrightText: Copyright © Idiap Research Institute <contact@idiap.ch>
+#
+# SPDX-FileContributor: Yannick Dayer <yannick.dayer@idiap.ch>
+#
+# SPDX-License-Identifier: MIT
+
+# Inspired from https://github.com/readthedocs/actions/tree/v1/preview
+
+name: doc preview
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  documentation-links:
+    runs-on: ubuntu-22.04
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Modify the PR with a link to the new docs
+        uses: readthedocs/actions/preview@v1
+        with:
+          project-slug: "clapper"
