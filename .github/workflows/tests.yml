@@ -48,6 +48,10 @@ jobs:
   gen_coverage:
     name: Generate the coverage reports
     uses: ./.github/workflows/coverage.yml
+    permissions:
+      pull-requests: write
+      contents: write
+      actions: read
 
   merge-coverage:
     name: Merge the coverage reports from multiple coverages
