@@ -16,5 +16,9 @@ def test_hello():
         results = runner.invoke(hello)
         assert results.exit_code == 0
         assert results.output.startswith("Hello world")
-        results = runner.invoke("hello", args=["dummy"])
+
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        results = runner.invoke(hello, args=["dummy"])
+        assert results.exit_code == 0
         assert results.output.startswith("Hello dummy")
