@@ -9,10 +9,7 @@
 name: coverage comment
 
 on:
-  workflow_run:
-    workflows: ["tests"]
-    types:
-      - completed
+  workflow_call
 
 jobs:
   coverage-comment:

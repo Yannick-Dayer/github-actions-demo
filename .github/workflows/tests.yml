@@ -30,7 +30,7 @@ jobs:
       - name: Setup Pixi
         uses: prefix-dev/setup-pixi@v0.8.1
         with:
-          pixi-version: v0.25.0
+          pixi-version: v0.39.0
           environments: ${{ matrix.pixi_environment }}
       - name: Run Tests
         run: pixi run -e ${{ matrix.pixi_environment }} test-ci
@@ -44,6 +44,10 @@ jobs:
           path: .coverage.${{ matrix.pixi_environment }}-${{ matrix.os }}
           include-hidden-files: true
           if-no-files-found: error
+
+  gen_coverage:
+    name: Generate the coverage reports
+    uses: ./.github/workflows/coverage.yml
 
   merge-coverage:
     name: Merge the coverage reports from multiple coverages
@@ -91,7 +95,7 @@ jobs:
       - name: Setup Pixi
         uses: prefix-dev/setup-pixi@v0.8.1
         with:
-          pixi-version: v0.25.0
+          pixi-version: v0.39.0
           environments: doc
       - name: Build docs
         run: pixi run -e doc doc
